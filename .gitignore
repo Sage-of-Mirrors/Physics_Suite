@@ -286,3 +286,10 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+Physics_Suite/build/Physics_Suite.lst
+Physics_Suite/build/Physics_Suite.map
+*.3dsx
+*.elf
+*.smdh
+Physics_Suite/build/main.d
+Physics_Suite/build/main.o

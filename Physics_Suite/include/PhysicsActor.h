@@ -1,5 +1,6 @@
 #pragma once
 #include "vec2.h"
+#include "framerate.h"
 
 class PhysicsActor {
 private:
@@ -10,9 +11,9 @@ private:
 	vec2f _velocity;
 	float _angular_velocity;
 public:
-	void Update(float);
-	void ApplyForce(vec2f, float);	
-	void ApplyAcceleration(Vec2f, float);
+	void Update();
+	void ApplyForce(vec2f);	
+	void ApplyAcceleration(Vec2f);
 	void ApplyImpulse(vec2f);
 	void ApplyVelocity(vec2f);
 	virtual void Render() = 0;

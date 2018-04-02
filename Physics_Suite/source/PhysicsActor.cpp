@@ -1,15 +1,15 @@
 #include "..\include\PhysicsActor.h"
 
-void PhysicsActor::Update(float dt) {                                           
-	_position += _velocity * dt;
+void PhysicsActor::Update() {                                           
+	_position += _velocity * FRAMEINTERVAL;
 }
 
-void PhysicsActor::ApplyForce(vec2f force, float dt) {
-	_velocity += (force * dt) / _mass;
+void PhysicsActor::ApplyForce(vec2f force) {
+	_velocity += (force * FRAMEINTERVAL) / _mass;
 }
 
-void PhysicsActor::ApplyAcceleration(vec2f acceleration, dt) {
-	_velocity += (acceleration * dt);
+void PhysicsActor::ApplyAcceleration(vec2f acceleration) {
+	_velocity += (acceleration * FRAMEINTERVAL);
 }
 
 void PhysicsActor::ApplyImpulse(vec2f impulse) {

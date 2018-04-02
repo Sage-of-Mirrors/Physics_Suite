@@ -18,6 +18,8 @@ typedef SSIZE_T ssize_t;
 #include <3ds.h>
 #include <sf2d.h>
 #include <stdio.h>
+#include "..\include\StateMachine.h"
+#include "..\include\TitleState.h"
 
 int main()
 {
@@ -28,23 +30,28 @@ int main()
 	sf2d_set_clear_color(RGBA8(0x30, 0x30, 0x30, 0xFF));
 	sf2d_set_3D(0);
 
+	consoleInit(GFX_BOTTOM, NULL);
+
+	// Set up state machine
+	StateMachine _machine;
+	TitleState* _title = new TitleState();
+	_machine.ChangeState(_title);
+
 	//Main loop
 	while (aptMainLoop())
 	{
 		hidScanInput();
 
-		// If Start button is pressed, we exit
-		if (hidKeysDown() & KEY_START)
-		{
+		if (_machine.Update() == 1)
 			break;
-		}
 
-		sf2d_start_frame(GFX_TOP, GFX_LEFT);
-		sf2d_draw_fill_circle(0, 0, 50, RGBA8(0xFF, 0, 0, 0xFF));
-		sf2d_end_frame();
+		_machine.Render();
 
 		sf2d_swapbuffers();
 	}
+
+	if (_machine.GetCurrentState())
+		delete _machine.GetCurrentState();
 
 	// Exit the services
 	sf2d_fini();

@@ -96,6 +96,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\StateMachine.cpp" />
+    <ClCompile Include="source\TitleState.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\array.h" />
+    <ClInclude Include="include\BumperState.h" />
+    <ClInclude Include="include\OrbitState.h" />
+    <ClInclude Include="include\PlatformerState.h" />
+    <ClInclude Include="include\State.h" />
+    <ClInclude Include="include\StateMachine.h" />
+    <ClInclude Include="include\TitleState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

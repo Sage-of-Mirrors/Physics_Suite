@@ -2,6 +2,7 @@
 
 void PhysicsActor::Update() {                                           
 	_position += _velocity * FRAMEINTERVAL;
+	_angle += _angular_velocity * FRAMEINTERVAL;
 }
 
 void PhysicsActor::ApplyForce(vec2f force) {
@@ -18,4 +19,8 @@ void PhysicsActor::ApplyImpulse(vec2f impulse) {
 
 void PhysicsActor::ApplyVelocity(vec2f velocity_change) {
 	_velocity += velocity_change;
+}
+
+void PhysicsActor::ApplyAngularVelocity(float angular_velocity_change) {
+	_angular_velocity += angular_velocity_change;
 }

@@ -12,9 +12,13 @@ private:
 	float _angular_velocity;
 public:
 	void Update();
+	
 	void ApplyForce(vec2f);	
 	void ApplyAcceleration(Vec2f);
 	void ApplyImpulse(vec2f);
 	void ApplyVelocity(vec2f);
+	
+	void ApplyAngularVelocity(float);
+	
 	virtual void Render() = 0;
 };

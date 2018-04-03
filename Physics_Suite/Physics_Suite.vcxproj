@@ -105,6 +105,7 @@
     <ClInclude Include="include\array.h" />
     <ClInclude Include="include\BumperState.h" />
     <ClInclude Include="include\CircleActor.h" />
+    <ClInclude Include="include\Collider.h" />
     <ClInclude Include="include\framerate.h" />
     <ClInclude Include="include\OrbitState.h" />
     <ClInclude Include="include\PhysicsActor.h" />

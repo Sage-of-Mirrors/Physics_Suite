@@ -3,7 +3,7 @@
 #include "framerate.h"
 
 class PhysicsActor {
-private:
+protected:
 	vec2f _position;
 	float _angle;
 	float _mass;
@@ -13,10 +13,10 @@ private:
 public:
 	void Update();
 	
-	void ApplyForce(vec2f);	
-	void ApplyAcceleration(Vec2f);
-	void ApplyImpulse(vec2f);
-	void ApplyVelocity(vec2f);
+	void ApplyForce(vec2f&);
+	void ApplyAcceleration(vec2f&);
+	void ApplyImpulse(vec2f&);
+	void ApplyVelocity(vec2f&);
 	
 	void ApplyAngularVelocity(float);
 	

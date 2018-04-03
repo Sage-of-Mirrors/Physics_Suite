@@ -293,3 +293,5 @@ Physics_Suite/build/Physics_Suite.map
 *.smdh
 Physics_Suite/build/main.d
 Physics_Suite/build/main.o
+*.d
+*.o

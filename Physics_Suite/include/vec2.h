@@ -38,7 +38,7 @@ public:
 		y -= v.y;
 		return *this;
 	}
-	
+
 	vec2 operator+(double s) {
 		return vec2(x + s, y + s);
 	}

@@ -95,18 +95,24 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\CircleActor.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\PhysicsActor.cpp" />
     <ClCompile Include="source\StateMachine.cpp" />
     <ClCompile Include="source\TitleState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\array.h" />
     <ClInclude Include="include\BumperState.h" />
+    <ClInclude Include="include\CircleActor.h" />
+    <ClInclude Include="include\framerate.h" />
     <ClInclude Include="include\OrbitState.h" />
+    <ClInclude Include="include\PhysicsActor.h" />
     <ClInclude Include="include\PlatformerState.h" />
     <ClInclude Include="include\State.h" />
     <ClInclude Include="include\StateMachine.h" />
     <ClInclude Include="include\TitleState.h" />
+    <ClInclude Include="include\vec2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

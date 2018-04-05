@@ -112,6 +112,10 @@ public:
 		return vec2(y, -x);
 	}
 	
+	vec2 perpendicular () const {
+		return vec2(-y, x);
+	}
+	
 	static float dot(vec2 v1, vec2 v2) {
 		return v1.x * v2.x + v1.y * v2.y;
 	}

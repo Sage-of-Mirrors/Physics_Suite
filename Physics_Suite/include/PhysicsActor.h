@@ -1,6 +1,7 @@
 #pragma once
 #include "vec2.h"
 #include "framerate.h"
+#include "CollisionResult.h"
 #include <stdio.h>
 #include <assert.h>
 
@@ -33,10 +34,10 @@ public:
 
 	vec2f GetPosition() { return _position; }
 	PhysicsType GetType() { return _type; }
-	bool CheckCollide(PhysicsActor* actor);
-	virtual bool CheckCollide_Circle(CircleActor* circle) = 0;
-	virtual bool CheckCollide_Edge(EdgeActor* edge) = 0;
-	virtual bool CheckCollide_BoundingBox(BoundingBox* bounds) = 0;
+	CollisionResult* CheckCollide(PhysicsActor* actor);
+	virtual CollisionResult* CheckCollide_Circle(CircleActor* circle) = 0;
+	virtual CollisionResult* CheckCollide_Edge(EdgeActor* edge) = 0;
+	virtual CollisionResult* CheckCollide_BoundingBox(BoundingBox* bounds) = 0;
 	
 	void Update();
 	virtual void Render() = 0;

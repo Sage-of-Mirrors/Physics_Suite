@@ -17,21 +17,31 @@ void CircleActor::Render() {
 	sf2d_draw_fill_circle(_position.x, _position.y, _radius, RGBA8(_r, _g, _b, 0xFF));
 }
 
-bool CircleActor::CheckCollide_Circle(CircleActor* circle) {
+CollisionResult* CircleActor::CheckCollide_Circle(CircleActor* circle) {
 	vec2f distVec = circle->GetPosition() - _position;
 	float radii = circle->GetRadius() + _radius;
 
 	// Collision occurs if the distance between the two circles is less than the sum of their radii
 	if (distVec.length() < radii)
-		return true;
+	{
+		CollisionResult* result = new CollisionResult();
+		
+		vec2f distNormal = distVec.normalize();
+		vec2f contactPoint = _position + (distVec.length() * distNormal);
+		result->Points = CArrayT<vec2f> { contactPoint };
+		
+		vec2f centerToContact = contactPoint - _position;
+		result->Normal = centerToContact.perpendicular();
+		return result;
+	}
 	else
-		return false;
+		return nullptr;
 }
 
-bool CircleActor::CheckCollide_Edge(EdgeActor* edge) {
+CollisionResult* CircleActor::CheckCollide_Edge(EdgeActor* edge) {
 	return edge->CheckCollide_Circle(this);
 }
 
-bool CircleActor::CheckCollide_BoundingBox(BoundingBox* bounds) {
+CollisionResult* CircleActor::CheckCollide_BoundingBox(BoundingBox* bounds) {
 	return bounds->CheckCollide_Circle(this);
 }

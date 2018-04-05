@@ -14,9 +14,9 @@ public:
 	BoundingBox(vec2f min, vec2f max) { _min = min; _max = max; }
 	BoundingBox(vec2f* vecList, int count);
 	
-	bool CheckCollide_Circle(CircleActor* circle);
-	bool CheckCollide_Edge(EdgeActor* edge);
-	bool CheckCollide_BoundingBox(BoundingBox* bounds);
+	CollisionResult* CheckCollide_Circle(CircleActor* circle);
+	CollisionResult* CheckCollide_Edge(EdgeActor* edge);
+	CollisionResult* CheckCollide_BoundingBox(BoundingBox* bounds);
 	
 	void Render();
 };

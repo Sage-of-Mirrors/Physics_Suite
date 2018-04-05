@@ -22,7 +22,7 @@ void EdgeActor::Render() {
 		_width, RGBA8(_r, _g, _b, 0xFF));
 }
 
-bool EdgeActor::CheckCollide_Circle(CircleActor* circle) {
+CollisionResult* EdgeActor::CheckCollide_Circle(CircleActor* circle) {
 	// First, we calculate a, b, and c for the equation that describes the intersection between a line and a circle:
 	// a^2 * u + b * u + c
 	vec2f circPos = circle->GetPosition();
@@ -46,7 +46,9 @@ bool EdgeActor::CheckCollide_Circle(CircleActor* circle) {
 
 	// There are no solutions to the intersection equation, so there is no intersection.
 	if (a <= FLT_EPSILON || delta < FLT_EPSILON)
-		return false;
+		return nullptr;
+	
+	CollisionResult* result = new CollisionResult();
 
 	// Calculate where the first point of intersection is
 	float u1 = (-b + sqrt((b * b) - 4 * a * c)) / (2 * a);
@@ -55,17 +57,34 @@ bool EdgeActor::CheckCollide_Circle(CircleActor* circle) {
 
 	// Point was on the line segment. This is a valid collision.
 	if (CheckPointOnEdge(point1))
-		return true;
+		result->Points.push_back(point1);
 	// delta == 0 means there is only one point of intersection. The point we calculated above was not on the line segment,
 	// so the collision is not valid.
 	else if (delta == 0)
-		return false;
+	{
+		delete result;
+		return nullptr;
+	}
 
 	// Calculate where the second point of intersection is
 	float u2 = (-b - sqrt((b * b) - 4 * a * c)) / (2 * a);
 	vec2f point2 = _startPoint + (_endPoint - _startPoint) * u2;
 
-	return CheckPointOnEdge(point2);
+	if (CheckPointOnEdge(point2))
+		result->Points.push_back(point2);
+	
+	if (result->Points.size() > 0)
+	{
+		vec2f startToIntersection = point1 - _startPoint;
+		result->Normal = startToIntersection.perpendicular;
+		
+		return result;
+	}
+	else
+	{
+		delete result;
+		return nullptr;
+	}
 }
 
 bool EdgeActor::CheckPointOnEdge(vec2f point) {
@@ -94,7 +113,7 @@ bool EdgeActor::CheckPointOnEdge(vec2f point) {
 	return false;
 }
 
-bool EdgeActor::CheckCollide_Edge(EdgeActor* edge) {
+CollisionResult* EdgeActor::CheckCollide_Edge(EdgeActor* edge) {
 	vec2f realStart = _startPoint + _position;
 	vec2f realEnd = _endPoint + _position;
 	vec2f otherStart = edge->GetStartPoint() + edge->GetPosition();

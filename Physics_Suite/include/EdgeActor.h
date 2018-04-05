@@ -23,9 +23,9 @@ public:
 	vec2f GetEndPoint() { return _endPoint; }
 	vec2f GetNormal() { return _normal; }
 
-	bool CheckCollide_Circle(CircleActor* circle);
-	bool CheckCollide_Edge(EdgeActor* edge);
-	bool CheckCollide_BoundingBox(BoundingBox* edge);
+	CollisionResult* CheckCollide_Circle(CircleActor* circle);
+	CollisionResult* CheckCollide_Edge(EdgeActor* edge);
+	CollisionResult* CheckCollide_BoundingBox(BoundingBox* edge);
 	bool CheckPointOnEdge(vec2f point);
 
 	void SetColor(char r, char g, char b);

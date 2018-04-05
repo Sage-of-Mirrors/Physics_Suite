@@ -33,5 +33,5 @@ bool CircleActor::CheckCollide_Edge(EdgeActor* edge) {
 }
 
 bool CircleActor::CheckCollide_BoundingBox(BoundingBox* bounds) {
-	return false;
+	return bounds->CheckCollide_Circle(this);
 }

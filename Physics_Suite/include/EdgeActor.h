@@ -15,8 +15,9 @@ private:
 	char _g;
 	char _b;
 public:
-	EdgeActor();
-	~EdgeActor();
+	EdgeActor() { };
+	EdgeActor(vec2f startPos, vec2f endPos, float width, char r, char g, char b);
+	~EdgeActor() { };
 
 	vec2f GetStartPoint() { return _startPoint; }
 	vec2f GetEndPoint() { return _endPoint; }
@@ -27,5 +28,6 @@ public:
 	bool CheckCollide_BoundingBox(BoundingBox* edge);
 	bool CheckPointOnEdge(vec2f point);
 
+	void SetColor(char r, char g, char b);
 	void Render();
 };

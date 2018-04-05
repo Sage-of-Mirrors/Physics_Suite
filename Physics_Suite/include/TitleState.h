@@ -12,6 +12,8 @@ private:
 	CArrayT<int> _testArray;
 	CircleActor* _testCircle1;
 	CircleActor* _testCircle2;
+	EdgeActor* _testEdge1;
+	EdgeActor* _testEdge2;
 public:
 	TitleState();
 	~TitleState();

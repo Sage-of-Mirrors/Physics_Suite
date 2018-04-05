@@ -1,6 +1,19 @@
 #pragma once
 #include "vec2.h"
 #include "framerate.h"
+#include <stdio.h>
+#include <assert.h>
+
+class CircleActor;
+class EdgeActor;
+class BoundingBox;
+
+enum PhysicsType {
+	CIRCLE,
+	EDGE,
+	BOUNDING_BOX,
+	NONE
+};
 
 class PhysicsActor {
 protected:
@@ -10,15 +23,23 @@ protected:
 	
 	vec2f _velocity;
 	float _angular_velocity;
+	PhysicsType _type;
 public:
+	void ApplyForce(vec2f& force);
+	void ApplyAcceleration(vec2f& acceleration);
+	void ApplyImpulse(vec2f& impulse);
+	void ApplyVelocity(vec2f& velocity_change);
+	void ApplyAngularVelocity(float angular_velocity_change);
+
+	vec2f GetPosition() { return _position; }
+	PhysicsType GetType() { return _type; }
+	bool CheckCollide(PhysicsActor* actor);
+	virtual bool CheckCollide_Circle(CircleActor* circle) = 0;
+	virtual bool CheckCollide_Edge(EdgeActor* edge) = 0;
+	virtual bool CheckCollide_BoundingBox(BoundingBox* bounds) = 0;
+	
 	void Update();
-	
-	void ApplyForce(vec2f&);
-	void ApplyAcceleration(vec2f&);
-	void ApplyImpulse(vec2f&);
-	void ApplyVelocity(vec2f&);
-	
-	void ApplyAngularVelocity(float);
-	
 	virtual void Render() = 0;
+
+	virtual ~PhysicsActor() { }
 };

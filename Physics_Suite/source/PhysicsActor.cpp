@@ -35,3 +35,23 @@ void PhysicsActor::ApplyVelocity(vec2f& velocity_change) {
 void PhysicsActor::ApplyAngularVelocity(float angular_velocity_change) {
 	_angular_velocity += angular_velocity_change;
 }
+
+bool PhysicsActor::CheckCollide(PhysicsActor* actor) {
+	if (actor == nullptr) {
+		printf("PhysicsActor pointer was null!\n");
+		return false;
+	}
+
+	switch (actor->GetType()) {
+	case PhysicsType::CIRCLE:
+		return CheckCollide_Circle((CircleActor*)actor);
+	case PhysicsType::EDGE:
+		return CheckCollide_Edge((EdgeActor*)actor);
+	case PhysicsType::BOUNDING_BOX:
+		return CheckCollide_BoundingBox((BoundingBox*)actor);
+	case PhysicsType::NONE:
+		return false;
+	default:
+		assert(false); // If this happens something's fucky
+	}
+}

@@ -36,6 +36,10 @@ void PhysicsActor::ApplyAngularVelocity(float angular_velocity_change) {
 	_angular_velocity += angular_velocity_change;
 }
 
+void PhysicsActor::ApplyPosition(vec2f& position_change) {
+	_position += position_change;
+}
+
 bool PhysicsActor::CheckCollide(PhysicsActor* actor) {
 	if (actor == nullptr) {
 		printf("PhysicsActor pointer was null!\n");

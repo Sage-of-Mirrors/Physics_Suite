@@ -1,9 +1,14 @@
 #pragma once
 
 #include "PhysicsActor.h"
-#include "CircleActor.h"
 
 class Collider {
+private:
+	Collider() { }
+	static void Depenetration(CollisionResult* result);
+	static void Repulsion(CollisionResult* result);
+	
+	static float Calc_Mu(PhysicsActor* first, PhysicsActor* second);
 public:
-	static bool CheckCollision_Circle_Circle(CircleActor*, CircleActor*);
+	static void ProcessCollision(CollisionResult* result);
 };

@@ -31,7 +31,12 @@ CollisionResult* CircleActor::CheckCollide_Circle(CircleActor* circle) {
 		result->Points = CArrayT<vec2f> { contactPoint };
 		
 		vec2f centerToContact = contactPoint - _position;
-		result->Normal = centerToContact.perpendicular();
+		result->Normal = centerToContact.normalized();
+		result->Tangent = result->Normal.pependicular();
+		
+		result->Friction = result->MixFriction(_friction, circle->GetFriction());
+		result->Restitution = result->MixRestitution(_restitution, circle->GetRestitition());
+		
 		return result;
 	}
 	else

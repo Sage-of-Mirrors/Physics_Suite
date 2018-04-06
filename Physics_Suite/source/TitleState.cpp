@@ -37,16 +37,16 @@ int TitleState::Update(StateMachine* machine) {
 	_testCircle2->Update();
 	_testEdge1->Update();
 	_testEdge2->Update();
-
-	if (_testEdge2->CheckCollide_Edge(_testEdge1))
+	
+	CollisionResult testResult = _testCircle2->CheckCollide_Circle(_testCircle1);
+	if (testResult != nullptr)
 	{
-		_testEdge2->SetColor(255, 255, 255);
-		printf("collided\n");
+		printf("Collision\n");
+		Collider::ProcessCollision(testResult);
 	}
 	else
 	{
-		_testEdge2->SetColor(0, 0, 255);
-		printf("no collision\n");
+		printf("No collision\n");
 	}
 
 	return 0;

@@ -18,6 +18,7 @@ public:
 	CollisionResult* CheckCollide_Circle(CircleActor* circle);
 	CollisionResult* CheckCollide_Edge(EdgeActor* edge);
 	CollisionResult* CheckCollide_BoundingBox(BoundingBox* bounds);
+	bool CheckPointInCircle(vec2f point);
 
 	void Render();
 	void Print() { 

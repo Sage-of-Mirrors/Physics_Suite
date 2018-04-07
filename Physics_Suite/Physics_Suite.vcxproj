@@ -95,7 +95,9 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\BoundingBox.cpp" />
     <ClCompile Include="source\CircleActor.cpp" />
+    <ClCompile Include="source\Collider.cpp" />
     <ClCompile Include="source\EdgeActor.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\PhysicsActor.cpp" />
@@ -104,9 +106,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\array.h" />
+    <ClInclude Include="include\BoundingBox.h" />
     <ClInclude Include="include\BumperState.h" />
     <ClInclude Include="include\CircleActor.h" />
     <ClInclude Include="include\Collider.h" />
+    <ClInclude Include="include\CollisionResult.h" />
     <ClInclude Include="include\EdgeActor.h" />
     <ClInclude Include="include\framerate.h" />
     <ClInclude Include="include\OrbitState.h" />

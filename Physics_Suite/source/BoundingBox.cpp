@@ -1,7 +1,7 @@
 #include "..\include\BoundingBox.h"
 
 CollisionResult* BoundingBox::CheckCollide_Circle(CircleActor* circle) {
-	vec2f circPos = circle->GetPosition();
+	/*vec2f circPos = circle->GetPosition();
 	float circRadius = circle->GetRadius();
 	
 	float deltaX = circPos.x - max(_position.x, min(circPos.x, _position + _size.x));
@@ -20,16 +20,16 @@ CollisionResult* BoundingBox::CheckCollide_Circle(CircleActor* circle) {
 		
 		return result;
 	}
-	else
+	else*/
 		return nullptr;
 }
 
-bool BoundingBox::CheckCollide_Edge(EdgeActor* edge) {
-
+CollisionResult* BoundingBox::CheckCollide_Edge(EdgeActor* edge) {
+	return nullptr;
 }
 
-bool BoundingBox::CheckCollide_BoundingBox(BoundingBox* bounds) {
-
+CollisionResult* BoundingBox::CheckCollide_BoundingBox(BoundingBox* bounds) {
+	return nullptr;
 }
 
 void BoundingBox::Render() {

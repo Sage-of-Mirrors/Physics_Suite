@@ -16,7 +16,7 @@ private:
 	char _b;
 public:
 	EdgeActor() { };
-	EdgeActor(vec2f startPos, vec2f endPos, float width, char r, char g, char b);
+	EdgeActor(vec2f startPos, vec2f endPos, float mass, float width, char r, char g, char b);
 	~EdgeActor() { };
 
 	vec2f GetStartPoint() { return _startPoint; }

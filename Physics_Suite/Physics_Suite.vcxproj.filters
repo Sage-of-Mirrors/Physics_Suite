@@ -37,6 +37,12 @@
     <ClCompile Include="source\EdgeActor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\BoundingBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Collider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\StateMachine.h">
@@ -76,6 +82,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\EdgeActor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BoundingBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CollisionResult.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

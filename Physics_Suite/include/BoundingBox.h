@@ -1,6 +1,6 @@
 #pragma once
 #include "PhysicsActor.h"
-#include <sf2d>
+#include <sf2d.h>
 
 class BoundingBox : public PhysicsActor {
 private:

@@ -14,6 +14,8 @@ private:
 	CircleActor* _testCircle2;
 	EdgeActor* _testEdge1;
 	EdgeActor* _testEdge2;
+	EdgeActor* _testEdge3;
+	EdgeActor* _testEdge4;
 public:
 	TitleState();
 	~TitleState();

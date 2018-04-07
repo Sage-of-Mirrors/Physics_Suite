@@ -29,12 +29,12 @@ protected:
 	
 	PhysicsType _type;
 public:
-	void ApplyForce(vec2f& force);
-	void ApplyAcceleration(vec2f& acceleration);
-	void ApplyImpulse(vec2f& impulse);
-	void ApplyVelocity(vec2f& velocity_change);
+	void ApplyForce(vec2f force);
+	void ApplyAcceleration(vec2f acceleration);
+	void ApplyImpulse(vec2f impulse);
+	void ApplyVelocity(vec2f velocity_change);
 	void ApplyAngularVelocity(float angular_velocity_change);
-	void ApplyPosition(vec2f& position_change);
+	void ApplyPosition(vec2f position_change);
 
 	vec2f GetPosition() { return _position; }
 	float GetAngle() { return _angle; }
@@ -42,7 +42,7 @@ public:
 	float GetFriction() {return _friction; }
 	float GetRestitution() { return _restitution; }
 	vec2f GetVelocity() { return _velocity; }
-	float GetAngularVelocity { return _angular_velocity; }
+	float GetAngularVelocity() { return _angular_velocity; }
 	PhysicsType GetType() { return _type; }
 	
 	CollisionResult* CheckCollide(PhysicsActor* actor);

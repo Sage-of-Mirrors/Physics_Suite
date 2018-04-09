@@ -1,6 +1,9 @@
 #include "..\include\PhysicsActor.h"
 const float DRAG = 10;
 void PhysicsActor::Update() {
+	if (_static)
+		return;
+
 	_position += _velocity * FRAMEINTERVAL;
 
 	/*vec2f drag(0, 0);
@@ -45,6 +48,10 @@ CollisionResult* PhysicsActor::CheckCollide(PhysicsActor* actor) {
 		printf("PhysicsActor pointer was null!\n");
 		return nullptr;
 	}
+
+	// If both of the objects are static, we don't have to check collision at all
+	if (_static && actor->GetIsStatic())
+		return nullptr;
 
 	switch (actor->GetType()) {
 	case PhysicsType::CIRCLE:

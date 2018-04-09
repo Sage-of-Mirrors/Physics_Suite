@@ -23,6 +23,8 @@ protected:
 	float _mass;
 	float _friction;
 	float _restitution;
+
+	bool _static;
 	
 	vec2f _velocity;
 	float _angular_velocity;
@@ -41,6 +43,7 @@ public:
 	float GetMass() { return _mass; }
 	float GetFriction() {return _friction; }
 	float GetRestitution() { return _restitution; }
+	bool GetIsStatic() { return _static; }
 	vec2f GetVelocity() { return _velocity; }
 	float GetAngularVelocity() { return _angular_velocity; }
 	PhysicsType GetType() { return _type; }

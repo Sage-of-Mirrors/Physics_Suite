@@ -2,11 +2,14 @@
 #include "..\include\EdgeActor.h"
 #include "..\include\BoundingBox.h"
 
-CircleActor::CircleActor(vec2f pos, float mass, float rad, char r, char g, char b) {
+CircleActor::CircleActor(vec2f position, float mass, float friction, float restitution, float rad, bool isStatic, char r, char g, char b) {
 	_type = PhysicsType::CIRCLE;
-	_position = pos;
+	_position = position;
 	_mass = mass;
+	_friction = friction;
+	_restitution = restitution;
 	_radius = rad;
+	_static = isStatic;
 	_r = r;
 	_g = g;
 	_b = b;

@@ -12,7 +12,7 @@ private:
 	char _b;
 public:
 	CircleActor() { };
-	CircleActor(vec2f, float, float, char, char, char);
+	CircleActor(vec2f position, float mass, float friction, float restitution, float rad, bool isStatic, char r, char g, char b);
 	float GetRadius() { return _radius; }
 
 	CollisionResult* CheckCollide_Circle(CircleActor* circle);

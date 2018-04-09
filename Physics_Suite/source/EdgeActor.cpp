@@ -1,11 +1,14 @@
 #include "..\include\EdgeActor.h"
 #include "..\include\CircleActor.h"
 
-EdgeActor::EdgeActor(vec2f startPos, vec2f endPos, float mass, float width, char r, char g, char b) {
+EdgeActor::EdgeActor(vec2f startPos, vec2f endPos, float mass, float friction, float restitution, float width, bool isStatic, char r, char g, char b) {
 	_startPoint = startPos;
 	_endPoint = endPos;
 	_mass = mass;
+	_friction = friction;
+	_restitution = restitution;
 	_width = width;
+	_static = isStatic;
 	_r = r;
 	_g = g;
 	_b = b;
@@ -73,7 +76,9 @@ CollisionResult* EdgeActor::CheckCollide_Circle(CircleActor* circle) {
 	vec2f pointToCenterDist = (closestPoint - circPos);
 	result->DepenetrationDistance = circRadius - pointToCenterDist.length();
 	result->Normal = pointToCenterDist.normalize();
+	printf("Edge Col Normal: (%f,%f)\n", result->Normal.x, result->Normal.y);
 	result->Tangent = result->Normal.perpendicular();
+	printf("Edge Col Tangent: (%f,%f)\n", result->Tangent.x, result->Tangent.y);
 
 	return result;
 }

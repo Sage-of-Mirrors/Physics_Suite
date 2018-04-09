@@ -12,51 +12,64 @@ void Collider::Depenetration(CollisionResult* result) {
 	float mass_mu = Calc_Mu(result->Obj1, result->Obj2);
 	vec2f depenetrationVec = result->Normal * result->DepenetrationDistance;
 
-	result->Obj1->ApplyPosition(depenetrationVec * (mass_mu / result->Obj1->GetMass()));
-	result->Obj2->ApplyPosition(-(depenetrationVec * (mass_mu / result->Obj2->GetMass())));
-
-	vec2f velocityDif = result->Obj1->GetVelocity() - result->Obj2->GetVelocity();
-	vec2f positionDif = result->Obj1->GetPosition() - result->Obj2->GetPosition();
-	float L = mass_mu * vec2f::cross(positionDif, velocityDif);
-
-	//vec2f j_Perpendicular = positionDif.normalize().perpendicular() * ((-result->DepenetrationDistance) / (positionDif.length() * (positionDif.length() + result->DepenetrationDistance))) * L;
-	vec2f j_Perpendicular = positionDif.normalize().perpendicular()  * ((-result->DepenetrationDistance) / (positionDif.length() * (positionDif.length() + result->DepenetrationDistance))) * L;
-
-	result->Obj1->ApplyForce(j_Perpendicular);
-	result->Obj2->ApplyForce(-j_Perpendicular);
+	if (!result->Obj1->GetIsStatic())
+		result->Obj1->ApplyPosition(depenetrationVec * (mass_mu / result->Obj1->GetMass()));
+	if (!result->Obj2->GetIsStatic())
+		result->Obj2->ApplyPosition(-(depenetrationVec * (mass_mu / result->Obj2->GetMass())));
 }
 
 void Collider::Repulsion(CollisionResult* result) {
 	float mass_mu = Calc_Mu(result->Obj1, result->Obj2);
-	vec2f velocityDif = result->Obj1->GetVelocity() - result->Obj2->GetVelocity();
-	
-	vec2f j = velocityDif * -(1 + 0.5) * mass_mu;
 
-	if (vec2f::dot(velocityDif, result->Normal) < 0)
-		j = result->Normal * vec2f::dot(j, result->Normal);
-	else
-		j = vec2f(0, 0);
-
-	result->Obj1->ApplyImpulse(j);
-	result->Obj2->ApplyImpulse(-j);
+	vec2f velocityDif = Calc_VelocityDifference(result->Obj1, result->Obj2);
 	
 	// Apply repulsion
-	/*float j = vec2f::dot(velocityDif, result->Normal) * -(1 + 0result->Restitution) * mass_mu;
-	
+	float jN = vec2f::dot(velocityDif, result->Normal) * -(1 + result->Restitution) * mass_mu;
+
+	if (jN > 0)
+		return;
+
+	printf("jN: %f\n", jN);
+
+	if (!result->Obj1->GetIsStatic())
+		result->Obj1->ApplyImpulse(-result->Normal * jN);
+	if (!result->Obj2->GetIsStatic())
+		result->Obj2->ApplyImpulse(result->Normal * jN);
+
+	velocityDif = Calc_VelocityDifference(result->Obj1, result->Obj2);
+	vec2f newTangent = velocityDif - (result->Normal * vec2f::dot(velocityDif, result->Normal));
+	newTangent = newTangent.normalize();
+
 	// Apply friction
-	vec2f jFriction = result->Tangent * vec2f::dot(velocityDif, result->Tangent) * -mass_mu;
-	
-	float f = result->Friction * j;
-	
-	if (jFriction.length() > f)
-		jFriction *= f / jFriction.length();
-	
-	vec2f J_final = (result->Normal * j); //+ (result->Tangent * jFri)
-	
-	result->Obj1->ApplyImpulse(J_final);
-	result->Obj2->ApplyImpulse(-J_final);*/
+	vec2f jf = newTangent * -mass_mu * vec2f::dot(velocityDif, newTangent);
+
+	if (jf.length() > (result->Normal * result->Friction * jN).length())
+		jf *= (result->Normal * result->Friction * jN).length() / jf.length();
+
+	if (!result->Obj1->GetIsStatic())
+		result->Obj1->ApplyImpulse(-jf);
+	if (!result->Obj2->GetIsStatic())
+		result->Obj2->ApplyImpulse(jf);
 }
 
 float Collider::Calc_Mu(PhysicsActor* first, PhysicsActor* second) {
-	return 1 / ((1 / first->GetMass()) + (1 / second->GetMass()));
+	float denom = 0;
+
+	if (!first->GetIsStatic())
+		denom += (1 / first->GetMass());
+	if (!second->GetIsStatic())
+		denom += (1 / second->GetMass());
+
+	return 1 / denom;
+}
+
+vec2f Collider::Calc_VelocityDifference(PhysicsActor* first, PhysicsActor* second) {
+	if (!first->GetIsStatic() && second->GetIsStatic())
+		return first->GetVelocity();
+	
+	if (first->GetIsStatic() && !second->GetIsStatic())
+		return second->GetVelocity();
+	
+	else
+		return second->GetVelocity() - first->GetVelocity();
 }

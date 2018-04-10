@@ -20,36 +20,27 @@ void Collider::Depenetration(CollisionResult* result) {
 
 void Collider::Repulsion(CollisionResult* result) {
 	float mass_mu = Calc_Mu(result->Obj1, result->Obj2);
-
 	vec2f velocityDif = Calc_VelocityDifference(result->Obj1, result->Obj2);
 	
-	// Apply repulsion
+	// Calculate repulsion
 	float jN = vec2f::dot(velocityDif, result->Normal) * -(1 + result->Restitution) * mass_mu;
 
 	if (jN > 0)
 		return;
 
-	printf("jN: %f\n", jN);
+	// Calculate friction
+	float jT = -vec2f::dot(velocityDif, newTangent) * mass_mu;
+
+	if (math::abs(jT) > result->Friction * math::abs(jN))
+		jf *= (result->Friction * math::abs(jN)) / math::abs(jT);
+	
+	// Apply forces
+	vec2f j_Final = (result->Normal * jN) + (result->Tangent * jT);
 
 	if (!result->Obj1->GetIsStatic())
-		result->Obj1->ApplyImpulse(-result->Normal * jN);
+		result->Obj1->ApplyImpulse(-j_Final);
 	if (!result->Obj2->GetIsStatic())
-		result->Obj2->ApplyImpulse(result->Normal * jN);
-
-	velocityDif = Calc_VelocityDifference(result->Obj1, result->Obj2);
-	vec2f newTangent = velocityDif - (result->Normal * vec2f::dot(velocityDif, result->Normal));
-	newTangent = newTangent.normalize();
-
-	// Apply friction
-	vec2f jf = newTangent * -mass_mu * vec2f::dot(velocityDif, newTangent);
-
-	if (jf.length() > (result->Normal * result->Friction * jN).length())
-		jf *= (result->Normal * result->Friction * jN).length() / jf.length();
-
-	if (!result->Obj1->GetIsStatic())
-		result->Obj1->ApplyImpulse(-jf);
-	if (!result->Obj2->GetIsStatic())
-		result->Obj2->ApplyImpulse(jf);
+		result->Obj2->ApplyImpulse(j_Final);
 }
 
 float Collider::Calc_Mu(PhysicsActor* first, PhysicsActor* second) {

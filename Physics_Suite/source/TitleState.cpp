@@ -5,8 +5,8 @@
 #include <Stdio.h>
 
 TitleState::TitleState() {
-	_testCircle1 = new CircleActor(vec2f(200, 120), 100, .9, 0.89, 10, false, 0xFF, 0xFF, 0);
-	_testCircle2 = new CircleActor(vec2f(50, 50), 100, 0.002, 0.89, 10, false, 0xff, 0, 0);
+	_testCircle1 = new CircleActor(vec2f(200, 120), 100, .002, 0.09, 10, false, 0xFF, 0xFF, 0);
+	_testCircle2 = new CircleActor(vec2f(50, 50), 100, 0.002, 0.09, 10, false, 0xff, 0, 0);
 	_testEdge1 = new EdgeActor(vec2f(0, 0), vec2f(0, 240), 1, .9, .89, 1, true, 0xFF, 0xFF, 0xFF);
 	_testEdge2 = new EdgeActor(vec2f(400, 0), vec2f(400, 240), 1, .9, .89, 1, true, 0xFF, 0xFF, 0xFF);
 	_testEdge3 = new EdgeActor(vec2f(0, 0), vec2f(400, 0), 1, .9, .89, 1, true, 0xFF, 0xFF, 0xFF);
@@ -47,38 +47,76 @@ int TitleState::Update(StateMachine* machine) {
 		_testEdge4->Update();
 
 		//printf("%f, %f\n", _testCircle2->GetVelocity().x, _testCircle2->GetVelocity().y);
-		_testCircle2->ApplyForce(vec2f(0, 900));
+		//_testCircle2->ApplyForce(vec2f(0, 900));
+		//_testCircle1->ApplyForce(vec2f(0, 900));
 
 		if (hidKeysDown() & KEY_A)
 			_testCircle2->ApplyImpulse(vec2f(200, 200));
 
-		CollisionResult* testResult1 = _testCircle2->CheckCollide_Edge(_testEdge1);
+		CollisionResult* testResult1 = _testCircle1->CheckCollide_Edge(_testEdge1);
 		if (testResult1 != nullptr)
 		{
 			printf("Collision\n");
 			Collider::ProcessCollision(testResult1);
 			delete testResult1;
 		}
-		CollisionResult* testResult2 = _testCircle2->CheckCollide_Edge(_testEdge2);
+		CollisionResult* testResult2 = _testCircle1->CheckCollide_Edge(_testEdge2);
 		if (testResult2 != nullptr)
 		{
 			printf("Collision\n");
 			Collider::ProcessCollision(testResult2);
 			delete testResult2;
 		}
-		CollisionResult* testResult3 = _testCircle2->CheckCollide_Edge(_testEdge3);
+		CollisionResult* testResult3 = _testCircle1->CheckCollide_Edge(_testEdge3);
 		if (testResult3 != nullptr)
 		{
 			printf("Collision\n");
 			Collider::ProcessCollision(testResult3);
 			delete testResult3;
 		}
-		CollisionResult* testResult4 = _testCircle2->CheckCollide_Edge(_testEdge4);
+		CollisionResult* testResult4 = _testCircle1->CheckCollide_Edge(_testEdge4);
 		if (testResult4 != nullptr)
 		{
 			printf("Collision\n");
 			Collider::ProcessCollision(testResult4);
 			delete testResult4;
+		}
+
+		CollisionResult* testResult5 = _testCircle2->CheckCollide_Edge(_testEdge1);
+		if (testResult5 != nullptr)
+		{
+			printf("Collision\n");
+			Collider::ProcessCollision(testResult5);
+			delete testResult5;
+		}
+		CollisionResult* testResult6 = _testCircle2->CheckCollide_Edge(_testEdge2);
+		if (testResult6 != nullptr)
+		{
+			printf("Collision\n");
+			Collider::ProcessCollision(testResult6);
+			delete testResult6;
+		}
+		CollisionResult* testResult7 = _testCircle2->CheckCollide_Edge(_testEdge3);
+		if (testResult7 != nullptr)
+		{
+			printf("Collision\n");
+			Collider::ProcessCollision(testResult7);
+			delete testResult7;
+		}
+		CollisionResult* testResult8 = _testCircle2->CheckCollide_Edge(_testEdge4);
+		if (testResult8 != nullptr)
+		{
+			printf("Collision\n");
+			Collider::ProcessCollision(testResult8);
+			delete testResult8;
+		}
+
+		CollisionResult* testResult9 = _testCircle1->CheckCollide_Circle(_testCircle2);
+		if (testResult9 != nullptr)
+		{
+			printf("Collision\n");
+			Collider::ProcessCollision(testResult9);
+			delete testResult9;
 		}
 	}
 

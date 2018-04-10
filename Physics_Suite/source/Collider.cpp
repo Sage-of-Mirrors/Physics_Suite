@@ -1,4 +1,5 @@
 #include "..\include\Collider.h"
+#include <math.h>
 
 void Collider::ProcessCollision(CollisionResult* result) {
 	if (result == nullptr)
@@ -29,10 +30,10 @@ void Collider::Repulsion(CollisionResult* result) {
 		return;
 
 	// Calculate friction
-	float jT = -vec2f::dot(velocityDif, newTangent) * mass_mu;
+	float jT = -vec2f::dot(velocityDif, result->Tangent) * mass_mu;
 
-	if (math::abs(jT) > result->Friction * math::abs(jN))
-		jf *= (result->Friction * math::abs(jN)) / math::abs(jT);
+	if (abs(jT) > result->Friction * abs(jN))
+		jT *= (result->Friction * abs(jN)) / abs(jT);
 	
 	// Apply forces
 	vec2f j_Final = (result->Normal * jN) + (result->Tangent * jT);

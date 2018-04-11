@@ -1,9 +1,26 @@
 #include "..\include\BumperState.h"
+#include "..\include\random.h"
+#include "..\include\CircleActor.h"
+#include <time.h>
 
 const int COL_ITERATIONS = 5;
 
 BumperState::BumperState() {
+	CFastRandom rand;
+	rand.seed((int)std::time(NULL));
 	
+	// Generate circles. Minimum of 2, maximum of 15
+	int numCircles = (rand.getUint() % (14)) + 2;
+	
+	for (int i = 0; i < numCircles; i++) {
+		int randomColor = rand.getInt();
+		int randomRadius = (rand.getUint() % (7)) + 3;
+		
+		CircleActor* circ = new CircleActor(pos, randomRadius, mass, 0.0f, 0.86f, randomColor, false);
+		circ->ApplyVelocity();
+		
+		_actorColliders.push_back((PhysicsActor*)circ);
+	}
 }
 
 int BumperState::Update(StateMachine* machine) { 

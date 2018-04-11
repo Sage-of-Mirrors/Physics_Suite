@@ -1,5 +1,7 @@
 #include <random.h>
 #include <cstdint>
+#include <math.h>
+
 
 int32_t CRandom::getInt() {
 

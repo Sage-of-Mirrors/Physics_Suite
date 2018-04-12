@@ -1,6 +1,5 @@
-#include <random.h>
+#include "..\include\random.h"
 #include <cstdint>
-#include <math.h>
 
 
 int32_t CRandom::getInt() {
@@ -15,19 +14,31 @@ float CRandom::getFloat() {
 
     float f = (float)((double)u / ((double)0xFFFFFFFFU));
 
-    return math::Clamp<float>(f, 0.0F, 1.0F);
+	return 0;
 
 }
 
 float CRandom::getAngle() {
 
-    return (getFloat() * math::TWOPI<float>);
+    return (getFloat() * M_TWOPI);
 
 }
 
 bool CRandom::getBool() {
 
     return !!(getUint() & 0x1);
+
+}
+
+vec2f CRandom::getVector() {
+
+	return vec2f(getFloat(), getFloat());
+
+}
+
+int32_t CRandom::getColor() {
+
+	return getUint() | 0xFF;
 
 }
 
@@ -73,9 +84,9 @@ void CFastRandom::seed(uint32_t seed) {
 
 uint32_t CFastRandom::getUint() {
 
-    uint32_t e = (mState[0] - math::RotateBits(mState[1], 27));
+    uint32_t e = (mState[0] - (mState[1] << 27));
 
-    mState[0] = (mState[1] ^ math::RotateBits(mState[2], 17));
+    mState[0] = (mState[1] ^ (mState[2] << 17));
 
     mState[1] = (mState[2] + mState[3]);
 

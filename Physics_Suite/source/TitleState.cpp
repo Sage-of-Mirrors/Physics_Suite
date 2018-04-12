@@ -1,16 +1,18 @@
 #include "..\include\TitleState.h"
 #include "..\include\EdgeActor.h"
 #include "..\include\Collider.h"
+#include "..\include\random.h"
 #include <sf2d.h>
 #include <Stdio.h>
+#include <time.h>
 
 TitleState::TitleState() {
-	_testCircle1 = new CircleActor(vec2f(200, 120), 100, .002, 0.09, 10, false, 0xFF, 0xFF, 0);
-	_testCircle2 = new CircleActor(vec2f(50, 50), 100, 0.002, 0.09, 10, false, 0xff, 0, 0);
-	_testEdge1 = new EdgeActor(vec2f(0, 0), vec2f(0, 240), 1, .9, .89, 1, true, 0xFF, 0xFF, 0xFF);
-	_testEdge2 = new EdgeActor(vec2f(400, 0), vec2f(400, 240), 1, .9, .89, 1, true, 0xFF, 0xFF, 0xFF);
-	_testEdge3 = new EdgeActor(vec2f(0, 0), vec2f(400, 0), 1, .9, .89, 1, true, 0xFF, 0xFF, 0xFF);
-	_testEdge4 = new EdgeActor(vec2f(0, 240), vec2f(400, 240), 1, .002, 0.89, 1, true, 0xFF, 0xFF, 0xFF);
+	_testCircle1 = new CircleActor(vec2f(200, 120), 10, 10, .000, 1, RGBA8(0xFF, 0xFF, 0xFF, 0xFF), false);
+	_testCircle2 = new CircleActor(vec2f(200, 120), 10, 10, 0.000, 1, RGBA8(0xFF, 0, 0, 0xFF), false);
+	_testEdge1 = new EdgeActor(vec2f(0, 0), vec2f(0, 240), 1, 0, 1, 1, true, 0xFF, 0xFF, 0xFF);
+	_testEdge2 = new EdgeActor(vec2f(400, 0), vec2f(400, 240), 1, .0, 1, 1, true, 0xFF, 0xFF, 0xFF);
+	_testEdge3 = new EdgeActor(vec2f(0, 0), vec2f(400, 0), 1, .0, 1, 1, true, 0xFF, 0xFF, 0xFF);
+	_testEdge4 = new EdgeActor(vec2f(0, 240), vec2f(400, 240), 1, 0, 1, 1, true, 0xFF, 0xFF, 0xFF);
 
 	vec2f vel = vec2f(100, 0);
 	_testCircle2->ApplyVelocity(vel);

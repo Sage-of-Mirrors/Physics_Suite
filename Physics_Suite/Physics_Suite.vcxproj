@@ -96,11 +96,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\BoundingBox.cpp" />
+    <ClCompile Include="source\BumperState.cpp" />
     <ClCompile Include="source\CircleActor.cpp" />
     <ClCompile Include="source\Collider.cpp" />
     <ClCompile Include="source\EdgeActor.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\PhysicsActor.cpp" />
+    <ClCompile Include="source\random.cpp" />
     <ClCompile Include="source\StateMachine.cpp" />
     <ClCompile Include="source\TitleState.cpp" />
   </ItemGroup>
@@ -116,6 +118,7 @@
     <ClInclude Include="include\OrbitState.h" />
     <ClInclude Include="include\PhysicsActor.h" />
     <ClInclude Include="include\PlatformerState.h" />
+    <ClInclude Include="include\random.h" />
     <ClInclude Include="include\State.h" />
     <ClInclude Include="include\StateMachine.h" />
     <ClInclude Include="include\TitleState.h" />

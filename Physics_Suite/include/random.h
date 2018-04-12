@@ -1,4 +1,5 @@
 #pragma once
+#include "vec2.h"
 #include <cstdint>
 
 class CRandom {
@@ -20,6 +21,10 @@ class CRandom {
     virtual float getAngle();
 
     virtual bool getBool();
+
+	virtual vec2f getVector();
+
+	virtual int32_t getColor();
 
 };
 

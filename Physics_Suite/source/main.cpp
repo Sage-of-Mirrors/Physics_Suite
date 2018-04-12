@@ -19,7 +19,7 @@ typedef SSIZE_T ssize_t;
 #include <sf2d.h>
 #include <stdio.h>
 #include "..\include\StateMachine.h"
-#include "..\include\TitleState.h"
+#include "..\include\BumperState.h"
 
 int main()
 {
@@ -34,7 +34,7 @@ int main()
 
 	// Set up state machine
 	StateMachine _machine;
-	TitleState* _title = new TitleState();
+	BumperState* _title = new BumperState();
 	_machine.ChangeState(_title);
 
 	//Main loop

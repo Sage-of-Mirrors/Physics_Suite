@@ -7,9 +7,7 @@
 class CircleActor : public PhysicsActor {
 private:
 	float _radius;
-	char _r;
-	char _g;
-	char _b;
+	int32_t _color;
 public:
 	CircleActor() { };
 	CircleActor(vec2f position, float radius, float mass, float friction, float restitution, int color, bool isStatic);

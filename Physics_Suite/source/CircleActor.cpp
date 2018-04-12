@@ -2,23 +2,22 @@
 #include "..\include\EdgeActor.h"
 #include "..\include\BoundingBox.h"
 
-CircleActor::CircleActor(vec2f position, float mass, float friction, float restitution, float rad, bool isStatic, char r, char g, char b) {
+CircleActor::CircleActor(vec2f position, float radius, float mass, float friction, float restitution, int color, bool isStatic) {
 	_type = PhysicsType::CIRCLE;
+
 	_position = position;
+	_radius = radius;
 	_mass = mass;
 	_friction = friction;
 	_restitution = restitution;
-	_radius = rad;
+	_color = color;
 	_static = isStatic;
-	_r = r;
-	_g = g;
-	_b = b;
 
 	_velocity = vec2f(0, 0);
 }
 
 void CircleActor::Render() {
-	sf2d_draw_fill_circle(_position.x, _position.y, _radius, RGBA8(_r, _g, _b, 0xFF));
+	sf2d_draw_fill_circle(_position.x, _position.y, _radius, _color);
 }
 
 CollisionResult* CircleActor::CheckCollide_Circle(CircleActor* circle) {

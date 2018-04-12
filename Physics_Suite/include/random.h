@@ -22,9 +22,11 @@ class CRandom {
 
     virtual bool getBool();
 
-	virtual vec2f getVector();
+	virtual vec2f getVector(float xMin, float xMax, float yMin, float yMax);
 
 	virtual int32_t getColor();
+
+	static float clamp(float value, float lo, float hi);
 
 };
 

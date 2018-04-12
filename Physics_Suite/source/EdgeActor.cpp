@@ -76,9 +76,7 @@ CollisionResult* EdgeActor::CheckCollide_Circle(CircleActor* circle) {
 	vec2f pointToCenterDist = (closestPoint - circPos);
 	result->DepenetrationDistance = circRadius - pointToCenterDist.length();
 	result->Normal = pointToCenterDist.normalize();
-	printf("Edge Col Normal: (%f,%f)\n", result->Normal.x, result->Normal.y);
 	result->Tangent = result->Normal.perpendicular();
-	printf("Edge Col Tangent: (%f,%f)\n", result->Tangent.x, result->Tangent.y);
 
 	return result;
 }

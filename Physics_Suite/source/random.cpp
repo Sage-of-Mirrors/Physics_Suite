@@ -14,7 +14,7 @@ float CRandom::getFloat() {
 
     float f = (float)((double)u / ((double)0xFFFFFFFFU));
 
-	return 0;
+	return clamp(f, 0, 1);
 
 }
 
@@ -30,15 +30,21 @@ bool CRandom::getBool() {
 
 }
 
-vec2f CRandom::getVector() {
+vec2f CRandom::getVector(float xMin, float xMax, float yMin, float yMax) {
 
-	return vec2f(getFloat(), getFloat());
+	return vec2f(xMin + (getFloat() * (xMax - xMin)), yMin + (getFloat() * (yMax -yMin)));
 
 }
 
 int32_t CRandom::getColor() {
 
-	return getUint() | 0xFF;
+	return getUint() | 0xFF000000;
+
+}
+
+float CRandom::clamp(float value, float lo, float hi) {
+	
+	return fmax(lo, fmin(value, hi));
 
 }
 

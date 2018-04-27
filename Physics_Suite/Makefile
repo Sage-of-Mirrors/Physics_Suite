@@ -32,9 +32,9 @@ include $(DEVKITARM)/3ds_rules
 #---------------------------------------------------------------------------------
 TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
-SOURCES		:=	source
+SOURCES		:=	source source/physics source/states source/util
 DATA		:=	data
-INCLUDES	:=	include
+INCLUDES	:=	include include/physics include/states include/util
 ROMFS		:=	romfs
 APP_TITLE	:=	3DS Physics Suite
 APP_DESCRIPTION	:=	A suite of physics simulations written for practice.

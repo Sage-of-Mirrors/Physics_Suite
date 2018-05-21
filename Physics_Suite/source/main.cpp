@@ -18,8 +18,8 @@ typedef SSIZE_T ssize_t;
 #include <3ds.h>
 #include <sf2d.h>
 #include <stdio.h>
-#include "..\include\StateMachine.h"
-#include "..\include\BumperState.h"
+#include "..\include\States\StateMachine.h"
+#include "..\include\States\BumperState.h"
 
 int main()
 {

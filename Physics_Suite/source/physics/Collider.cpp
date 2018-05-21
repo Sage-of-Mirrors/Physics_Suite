@@ -1,4 +1,4 @@
-#include "..\include\Collider.h"
+#include "..\..\include\physics\Collider.h"
 #include <math.h>
 
 void Collider::ProcessCollision(CollisionResult* result) {

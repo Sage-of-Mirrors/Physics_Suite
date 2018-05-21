@@ -1,4 +1,4 @@
-#include "..\include\BoundingBox.h"
+#include "..\..\include\physics\BoundingBox.h"
 
 CollisionResult* BoundingBox::CheckCollide_Circle(CircleActor* circle) {
 	/*vec2f circPos = circle->GetPosition();

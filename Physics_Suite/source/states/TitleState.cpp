@@ -1,7 +1,7 @@
-#include "..\include\TitleState.h"
-#include "..\include\EdgeActor.h"
-#include "..\include\Collider.h"
-#include "..\include\random.h"
+#include "..\..\include\states\TitleState.h"
+#include "..\..\include\physics\EdgeActor.h"
+#include "..\..\include\physics\Collider.h"
+#include "..\..\include\util\random.h"
 #include <sf2d.h>
 #include <Stdio.h>
 #include <time.h>

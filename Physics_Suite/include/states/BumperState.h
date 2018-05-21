@@ -1,11 +1,14 @@
 #pragma once
 #include "State.h"
-#include "PhysicsActor.h"
-#include "array.h"
+#include "..\physics\PhysicsActor.h"
+#include "..\util\array.h"
+#include "..\util\fader.h"
 
 class BumperState : public GameState {
 private:
 	CArrayT<PhysicsActor*> _actorColliders;
+	bool fading;
+	Fader* fader;
 	
 	void RenderTopScreen();
 	void RenderBottomScreen();

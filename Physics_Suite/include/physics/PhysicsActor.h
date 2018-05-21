@@ -1,6 +1,6 @@
 #pragma once
-#include "vec2.h"
-#include "framerate.h"
+#include "..\util\vec2.h"
+#include "..\util\framerate.h"
 #include "CollisionResult.h"
 #include <stdio.h>
 #include <assert.h>

@@ -1,9 +1,9 @@
-#include "..\include\BumperState.h"
-#include "..\include\random.h"
-#include "..\include\CircleActor.h"
-#include "..\include\EdgeActor.h"
-#include "..\include\Collider.h"
-#include "..\include\CollisionResult.h"
+#include "..\..\include\states\BumperState.h"
+#include "..\..\include\util\random.h"
+#include "..\..\include\physics\CircleActor.h"
+#include "..\..\include\physics\EdgeActor.h"
+#include "..\..\include\physics\Collider.h"
+#include "..\..\include\physics\CollisionResult.h"
 #include <time.h>
 
 const int COL_ITERATIONS = 5;
@@ -31,9 +31,19 @@ BumperState::BumperState() {
 		
 		_actorColliders.append((PhysicsActor*)circ);
 	}
+
+	fading = true;
+	fader = new Fader(true);
 }
 
 int BumperState::Update(StateMachine* machine) {
+
+	if (fading) {		
+		if (fader->Update() == 1) {
+			delete fader;
+			fading = false;
+		}
+	}
 
 	for (int i = 0; i < 5; i++) {
 		for (int i = 0; i < _actorColliders.size(); i++) {
@@ -72,6 +82,10 @@ void BumperState::RenderTopScreen() {
 	// Objects
 	for (int i = 0; i < _actorColliders.size(); i++) {
 		_actorColliders[i]->Render();
+	}
+
+	if (fading) {
+		fader->Render();
 	}
 
 	sf2d_end_frame();

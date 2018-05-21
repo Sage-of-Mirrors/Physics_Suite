@@ -95,34 +95,38 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\BoundingBox.cpp" />
-    <ClCompile Include="source\BumperState.cpp" />
-    <ClCompile Include="source\CircleActor.cpp" />
-    <ClCompile Include="source\Collider.cpp" />
-    <ClCompile Include="source\EdgeActor.cpp" />
-    <ClCompile Include="source\main.cpp" />
-    <ClCompile Include="source\PhysicsActor.cpp" />
-    <ClCompile Include="source\random.cpp" />
-    <ClCompile Include="source\StateMachine.cpp" />
-    <ClCompile Include="source\TitleState.cpp" />
+    <ClInclude Include="include\physics\BoundingBox.h" />
+    <ClInclude Include="include\physics\CircleActor.h" />
+    <ClInclude Include="include\physics\Collider.h" />
+    <ClInclude Include="include\physics\CollisionResult.h" />
+    <ClInclude Include="include\physics\EdgeActor.h" />
+    <ClInclude Include="include\physics\PhysicsActor.h" />
+    <ClInclude Include="include\physics\PolygonActor.h" />
+    <ClInclude Include="include\states\BumperState.h" />
+    <ClInclude Include="include\states\OrbitState.h" />
+    <ClInclude Include="include\states\PlatformerState.h" />
+    <ClInclude Include="include\states\State.h" />
+    <ClInclude Include="include\states\StateMachine.h" />
+    <ClInclude Include="include\states\TitleState.h" />
+    <ClInclude Include="include\util\array.h" />
+    <ClInclude Include="include\util\fader.h" />
+    <ClInclude Include="include\util\framerate.h" />
+    <ClInclude Include="include\util\random.h" />
+    <ClInclude Include="include\util\vec2.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\array.h" />
-    <ClInclude Include="include\BoundingBox.h" />
-    <ClInclude Include="include\BumperState.h" />
-    <ClInclude Include="include\CircleActor.h" />
-    <ClInclude Include="include\Collider.h" />
-    <ClInclude Include="include\CollisionResult.h" />
-    <ClInclude Include="include\EdgeActor.h" />
-    <ClInclude Include="include\framerate.h" />
-    <ClInclude Include="include\OrbitState.h" />
-    <ClInclude Include="include\PhysicsActor.h" />
-    <ClInclude Include="include\PlatformerState.h" />
-    <ClInclude Include="include\random.h" />
-    <ClInclude Include="include\State.h" />
-    <ClInclude Include="include\StateMachine.h" />
-    <ClInclude Include="include\TitleState.h" />
-    <ClInclude Include="include\vec2.h" />
+    <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\physics\BoundingBox.cpp" />
+    <ClCompile Include="source\physics\CircleActor.cpp" />
+    <ClCompile Include="source\physics\Collider.cpp" />
+    <ClCompile Include="source\physics\EdgeActor.cpp" />
+    <ClCompile Include="source\physics\PhysicsActor.cpp" />
+    <ClCompile Include="source\physics\PolygonActor.cpp" />
+    <ClCompile Include="source\states\BumperState.cpp" />
+    <ClCompile Include="source\states\StateMachine.cpp" />
+    <ClCompile Include="source\states\TitleState.cpp" />
+    <ClCompile Include="source\util\fader.cpp" />
+    <ClCompile Include="source\util\random.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,5 +1,5 @@
-#include "..\include\StateMachine.h"
-#include "..\include\State.h"
+#include "..\..\include\states\StateMachine.h"
+#include "..\..\include\states\State.h"
 
 void StateMachine::ChangeState(GameState* nextState) {
 	if (_CurrentState)

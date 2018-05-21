@@ -1,5 +1,5 @@
-#include "..\include\EdgeActor.h"
-#include "..\include\CircleActor.h"
+#include "..\..\include\physics\EdgeActor.h"
+#include "..\..\include\physics\CircleActor.h"
 
 EdgeActor::EdgeActor(vec2f startPos, vec2f endPos, float mass, float friction, float restitution, float width, bool isStatic, char r, char g, char b) {
 	_startPoint = startPos;

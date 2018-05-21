@@ -1,7 +1,7 @@
 #pragma once
 #include "State.h"
-#include "CircleActor.h"
-#include "array.h"
+#include "..\physics\CircleActor.h"
+#include "..\util\array.h"
 
 class TitleState : public GameState {
 private:

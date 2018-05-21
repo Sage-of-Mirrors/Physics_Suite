@@ -1,6 +1,6 @@
-#include "..\include\CircleActor.h"
-#include "..\include\EdgeActor.h"
-#include "..\include\BoundingBox.h"
+#include "..\..\include\physics\CircleActor.h"
+#include "..\..\include\physics\EdgeActor.h"
+#include "..\..\include\physics\BoundingBox.h"
 
 CircleActor::CircleActor(vec2f position, float radius, float mass, float friction, float restitution, int color, bool isStatic) {
 	_type = PhysicsType::CIRCLE;
